@@ -1,9 +1,10 @@
 
-import Header from "./Header"
+import Header from "../components/Header"
+import Sidebar from "./Sidebar"
 
 
 
-function HeaderOnly({ children }) {
+function DefaultLayout({ children }) {
 
    return (
 
@@ -11,6 +12,7 @@ function HeaderOnly({ children }) {
       <div>
          <Header />
          <div className="container">
+            <Sidebar />
             <div className="content">{children}
             </div>
 
@@ -19,4 +21,4 @@ function HeaderOnly({ children }) {
    )
 }
 
-export default HeaderOnly
+export default DefaultLayout

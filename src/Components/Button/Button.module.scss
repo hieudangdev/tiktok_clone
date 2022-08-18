@@ -7,6 +7,9 @@
    border-radius: 4px;
    background-color: var(--white);
    border: 1px solid transparent;
+   text-align: center;
+   white-space: nowrap;
+   user-select: none;
    + .wrapper {
       margin-left: 16px;
    }
@@ -37,7 +40,17 @@
    }
 }
 
-//button type
+.disabled {
+   opacity: 0.5;
+   pointer-events: none;
+}
+.rounded {
+   border-radius: 52px;
+   box-shadow: 0 2px 8px rgb(0 0 0 / 6%);
+   border-color: rgba(22, 24, 35, 0.12);
+}
+
+//button sizes
 
 .small {
    min-width: 88px;

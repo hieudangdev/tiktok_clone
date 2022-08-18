@@ -1,0 +1,56 @@
+.wrapper {
+   font-size: 1.6rem;
+   font-weight: 700;
+   min-width: 100px;
+   padding: 6px 8px;
+   line-height: 22px;
+   border-radius: 4px;
+   background-color: var(--white);
+   border: 1px solid transparent;
+   + .wrapper {
+      margin-left: 16px;
+   }
+}
+//button style
+.primary {
+   background-color: var(--primary);
+   color: var(--white);
+
+   &:hover {
+      background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)), #fe2c55;
+   }
+}
+.outline {
+   color: var(--primary);
+   border-color: currentColor;
+}
+
+.text {
+   border-color: rgba(22, 24, 35, 0.12);
+   font-style: normal;
+   border-radius: 2px;
+   font-weight: 600;
+   width: 113px;
+
+   &:hover {
+      background-color: rgba(22, 24, 35, 0.03);
+   }
+}
+
+//button type
+
+.small {
+   min-width: 88px;
+   padding: 0px 10px;
+   font-weight: 600;
+   min-height: 28px;
+}
+
+.large {
+   min-width: 168px;
+   font-size: 1.8rem;
+   min-height: 48px;
+   line-height: 25px;
+   font-weight: 600;
+   padding: 6px 8px;
+}

@@ -2,22 +2,48 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@200;300;400;500;600;700&display=swap');
 
 :root {
-  --primary: #fe395f;
-  --default-layout-header-height: 60px;
-  --default-layout-width: 1150px;
+   --primary: #fe395f;
+   --default-layout-header-height: 60px;
+   --default-layout-width: 1150px;
+   --black: #000;
+   --white: #fff;
+   --text-color: #333;
 }
 html {
-  font-size: 62.5%;
+   font-size: 62.5%;
 }
 
 body {
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-size: 1.6rem;
-  line-height: 1.5;
-  text-rendering: optimizeSpeed;
+   font-family: 'IBM Plex Sans', sans-serif;
+   font-size: 1.4rem;
+   line-height: 1.5;
+   text-rendering: optimizeSpeed;
+   min-height: 100vh;
+   background-color: rgba(255, 255, 255, 1);
+   overscroll-behavior: contain;
+   direction: ltr;
+   -webkit-font-smoothing: antialiased;
 }
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+}
+
+button,
+input,
+[tabindex] {
+   outline: none;
+   border: none;
+   background-color: transparent;
+}
+
+button {
+   &:hover {
+      cursor: pointer;
+   }
+}
+a[href] {
+   color: var(--text-color);
+   text-decoration: none;
 }

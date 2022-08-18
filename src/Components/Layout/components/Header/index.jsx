@@ -57,7 +57,7 @@ function Header() {
             </Tippy>
             {/*Action  */}
             <div className={cx('action')}>
-               <Button text></Button>
+               <Button text>
                   <Icon className={cx('icon-plus')} icon={faPlus} />
                   Upload
                </Button>

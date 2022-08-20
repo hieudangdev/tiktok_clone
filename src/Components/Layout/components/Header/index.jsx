@@ -17,6 +17,19 @@ const MENU_ITEMS = [
    {
       icon: <Icon icon={faEarthAmerica} />,
       title: 'English',
+      children: {
+         title: 'Languages',
+         data: [
+            {
+               code: 'en',
+               title: 'English',
+            },
+            {
+               code: 'vi',
+               title: 'Vietnamese',
+            },
+         ],
+      },
    },
    {
       icon: <Icon icon={faCircleQuestion} />,
@@ -79,9 +92,9 @@ function Header() {
                </Button>
                <Button primary> Log in</Button>
                <Menu items={MENU_ITEMS}>
-                  <button className={cx('more-btn')}>
+                  <div className={cx('more-btn')}>
                      <Icon icon={faEllipsisVertical} />
-                  </button>
+                  </div>
                </Menu>
             </div>
          </div>

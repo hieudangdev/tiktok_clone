@@ -14,7 +14,7 @@
    top: 0;
    right: 0px;
    background: rgba(255, 255, 255, 1);
-   position: fixed;
+
    align-items: center;
    z-index: 1000;
    // background-color: #ccc;
@@ -27,7 +27,7 @@
    justify-content: space-between;
    flex-direction: row;
    max-width: 1150px;
-   padding: 0px 24px 0px 20px;
+   padding: var(--default-padding-horizontal);
    align-items: center;
 }
 .logo {
@@ -137,4 +137,6 @@
    background-color: transparent;
    width: 20px;
    height: 20px;
+
+   padding: 0 4px;
 }

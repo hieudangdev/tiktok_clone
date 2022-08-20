@@ -129,10 +129,12 @@
 .btn-upload {
    width: 113px;
 }
-.icon-ellip {
+.more-btn {
    margin-left: 16px;
    position: relative;
    cursor: pointer;
    font-style: normal;
-   padding: 0 4px;
+   background-color: transparent;
+   width: 20px;
+   height: 20px;
 }

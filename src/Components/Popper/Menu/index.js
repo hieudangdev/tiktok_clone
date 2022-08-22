@@ -13,10 +13,11 @@ const cx = classNames.bind(styles)
 
 
 
-function Menu({ children, items }) {
-    const [History, setHistory] = useState([{ data: items }])
+function Menu({ children, items, onChange }) {
+    const [History, setHistory] = useState([{ title: 'ngu', data: items }])
 
     const current = History[History.length - 1]
+
 
     const renderItems = () => {
         return current.data.map((item, index) => {
@@ -28,6 +29,8 @@ function Menu({ children, items }) {
                     onclick={() => {
                         if (isParent) {
                             setHistory((prev) => [...prev, item.children])
+                        } else {
+                            onChange(item)
                         }
                     }}
                 />
@@ -37,14 +40,14 @@ function Menu({ children, items }) {
     return (
         <Tippy
             interactive
-            visible
+
             delay={[0, 400]}
             placement='bottom-end'
             render={(attrs) => (
                 <div className={cx('menu-list')} tabIndex='-1' {...attrs}>
                     <PopperWrapper className={cx('menu-popper')}>
                         {History.length > 1 && <HeaderMenu
-                            title='Languages'
+                            title={current.title}
                             onBack={() => {
                                 setHistory((prev) => prev.slice(0, prev.length - 1))
                             }}

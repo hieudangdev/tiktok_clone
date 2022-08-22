@@ -13,6 +13,7 @@ import Button from '~/Components/Button';
 import Menu from '~/Components/Popper/Menu';
 
 const cx = classNames.bind(styles);
+
 const MENU_ITEMS = [
    {
       icon: <Icon icon={faEarthAmerica} />,
@@ -21,12 +22,24 @@ const MENU_ITEMS = [
          title: 'Languages',
          data: [
             {
+               type: 'languages',
                code: 'en',
                title: 'English',
             },
             {
+               type: 'languages',
                code: 'vi',
                title: 'Vietnamese',
+            },
+            {
+               type: 'languages',
+               code: 'vj',
+               title: 'Korean',
+            },
+            {
+               type: 'languages',
+               code: 'vi',
+               title: 'Japanese',
             },
          ],
       },
@@ -44,13 +57,18 @@ const MENU_ITEMS = [
 
 function Header() {
    const [Searchresult, setSearchresult] = useState([]);
-
+   //localtest
    useEffect(() => {
       setTimeout(() => {
          setSearchresult([]);
       }, 0);
    }, []);
-   //localtest
+
+   //handleMenu
+   const handleMenu = (menuitem) => {
+      console.log(menuitem);
+   };
+
    return (
       <header className={cx('wrapper')}>
          <div className={cx('inner')}>
@@ -91,7 +109,7 @@ function Header() {
                   Upload
                </Button>
                <Button primary> Log in</Button>
-               <Menu items={MENU_ITEMS}>
+               <Menu items={MENU_ITEMS} onChange={handleMenu}>
                   <div className={cx('more-btn')}>
                      <Icon icon={faEllipsisVertical} />
                   </div>

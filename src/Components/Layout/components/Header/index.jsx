@@ -2,7 +2,7 @@ import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react/headless';
 import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
-import { faSpinner, faPlus, faEllipsisVertical, faEarthAmerica, faCircleQuestion, faKeyboard } from '@fortawesome/free-solid-svg-icons';
+import { faSpinner, faPlus, faEllipsisVertical, faEarthAmerica, faCircleQuestion, faKeyboard, faCloudDownload, faCloudUpload } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from 'react';
 //local import
 import styles from './Header.module.scss';
@@ -10,6 +10,7 @@ import images from '~/assets/images';
 import { Wrapper as PopperWrapper } from '~/Components/Popper';
 import AcountItem from '~/Components/AcountItem';
 import Button from '~/Components/Button';
+import { BiMessageAdd, BiCloudUpload } from 'react-icons/bi';
 import Menu from '~/Components/Popper/Menu';
 
 const cx = classNames.bind(styles);
@@ -30,16 +31,6 @@ const MENU_ITEMS = [
                type: 'languages',
                code: 'vi',
                title: 'Vietnamese',
-            },
-            {
-               type: 'languages',
-               code: 'vj',
-               title: 'Korean',
-            },
-            {
-               type: 'languages',
-               code: 'vi',
-               title: 'Japanese',
             },
          ],
       },
@@ -68,6 +59,8 @@ function Header() {
    const handleMenu = (menuitem) => {
       console.log(menuitem);
    };
+
+   const currentUser = true;
 
    return (
       <header className={cx('wrapper')}>
@@ -102,17 +95,43 @@ function Header() {
                   </button>
                </div>
             </Tippy>
+
             {/*Action  */}
+
             <div className={cx('action')}>
-               <Button text>
-                  <Icon className={cx('icon-plus')} icon={faPlus} />
-                  Upload
-               </Button>
-               <Button primary> Log in</Button>
+               {currentUser ? (
+                  <>
+                     <button className={cx('action-btn')}>
+                        <BiCloudUpload className={cx('icon-action')} />
+                     </button>
+                     <button className={cx('action-btn')}>
+                        <BiMessageAdd className={cx('icon-action')} />
+                     </button>
+                  </>
+               ) : (
+                  <>
+                     <Button text>
+                        <Icon className={cx('icon-plus')} icon={faPlus} />
+                        Upload
+                     </Button>
+                     <Button primary> Log in</Button>
+                  </>
+               )}
+
                <Menu items={MENU_ITEMS} onChange={handleMenu}>
-                  <div className={cx('more-btn')}>
-                     <Icon icon={faEllipsisVertical} />
-                  </div>
+                  {currentUser ? (
+                     <img
+                        className={cx('user-avatar')}
+                        src={
+                           'https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/1278fdc7ca7d4011ad234b8be1f5d7f0~c5_100x100.jpeg?x-expires=1661504400&x-signature=7MtFGbhZNGKfMkr%2BhbkRfj9AD%2Fw%3D'
+                        }
+                        alt={'hieuadmin'}
+                     />
+                  ) : (
+                     <button className={cx('more-btn')}>
+                        <Icon icon={faEllipsisVertical} />
+                     </button>
+                  )}
                </Menu>
             </div>
          </div>

@@ -129,6 +129,39 @@
 .btn-upload {
    width: 113px;
 }
+
+//Action
+
+.action {
+   display: flex;
+   align-items: center;
+   flex-direction: row;
+}
+.action-btn {
+   height: 32px;
+   padding: 3px 3px 0;
+   font-size: 2.2rem;
+   position: relative;
+   + .action-btn {
+      margin-left: 16px;
+   }
+}
+
+.user-avatar {
+   margin-left: 24px;
+   position: relative;
+   width: 32px;
+   height: 32px;
+   background-size: cover;
+   border-radius: 50%;
+   cursor: pointer;
+   background: center no-repeat;
+}
+.icon-action {
+   display: block;
+   width: 26px;
+   height: 26px;
+}
 .more-btn {
    margin-left: 16px;
    position: relative;

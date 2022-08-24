@@ -1,8 +1,10 @@
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
-import Tippy from '@tippyjs/react/headless';
+import TippyHeadless from '@tippyjs/react/headless';
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
 import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
-import { faSpinner, faPlus, faEllipsisVertical, faEarthAmerica, faCircleQuestion, faKeyboard, faCloudDownload, faCloudUpload } from '@fortawesome/free-solid-svg-icons';
+import { faSpinner, faPlus, faEllipsisVertical, faEarthAmerica, faCircleQuestion, faKeyboard, faUser, faCoins, faGear, faSignOut } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from 'react';
 //local import
 import styles from './Header.module.scss';
@@ -46,8 +48,32 @@ const MENU_ITEMS = [
    },
 ];
 
+const Menu_USERS = [
+   {
+      icon: <Icon icon={faUser} />,
+      title: 'View profile',
+   },
+   {
+      icon: <Icon icon={faCoins} />,
+      title: 'Get coins',
+   },
+   {
+      icon: <Icon icon={faGear} />,
+      title: 'Settings',
+   },
+   ...MENU_ITEMS,
+   {
+      icon: <Icon icon={faSignOut} />,
+      title: 'Log out',
+      separate: true,
+   },
+];
+
 function Header() {
    const [Searchresult, setSearchresult] = useState([]);
+
+   const currentUser = true;
+
    //localtest
    useEffect(() => {
       setTimeout(() => {
@@ -60,15 +86,13 @@ function Header() {
       console.log(menuitem);
    };
 
-   const currentUser = true;
-
    return (
       <header className={cx('wrapper')}>
          <div className={cx('inner')}>
             <div className={cx('logo')}>
                <img src={images.logo} alt='Tiktok' />
             </div>
-            <Tippy
+            <TippyHeadless
                visible={Searchresult.length > 0}
                interactive
                render={(attrs) => (
@@ -94,19 +118,24 @@ function Header() {
                      </svg>
                   </button>
                </div>
-            </Tippy>
+            </TippyHeadless>
 
             {/*Action  */}
 
             <div className={cx('action')}>
                {currentUser ? (
                   <>
-                     <button className={cx('action-btn')}>
-                        <BiCloudUpload className={cx('icon-action')} />
-                     </button>
-                     <button className={cx('action-btn')}>
-                        <BiMessageAdd className={cx('icon-action')} />
-                     </button>
+                     <Tippy delay={[0, 300]} content='Upload' placement='bottom'>
+                        <button className={cx('action-btn')}>
+                           <BiCloudUpload className={cx('icon-action')} />
+                        </button>
+                     </Tippy>
+
+                     <Tippy delay={[0, 300]} content='Message' placement='bottom'>
+                        <button className={cx('action-btn')}>
+                           <BiMessageAdd className={cx('icon-action')} />
+                        </button>
+                     </Tippy>
                   </>
                ) : (
                   <>
@@ -118,7 +147,7 @@ function Header() {
                   </>
                )}
 
-               <Menu items={MENU_ITEMS} onChange={handleMenu}>
+               <Menu items={currentUser ? Menu_USERS : MENU_ITEMS} onChange={handleMenu}>
                   {currentUser ? (
                      <img
                         className={cx('user-avatar')}

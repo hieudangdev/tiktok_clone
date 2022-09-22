@@ -9,12 +9,12 @@ import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import { Wrapper as PopperWrapper } from '~/Components/Popper'
 import AcountItem from '~/Components/AcountItem'
 import { SearchIcon } from '~/Components/Icons'
+import { useDebounce } from '~/Hooks'
+import * as searchServices from '~/ApiServices/searchServices'
 
 const cx = classNames.bind(styles)
 
 function Search() {
-
-
 
     const [Searchresult, setSearchresult] = useState([])
     const [SearchValue, setSearchvalue] = useState('')
@@ -22,6 +22,7 @@ function Search() {
     const [loading, setloading] = useState(false)
 
 
+    const debounced = useDebounce(SearchValue, 500)
     const inputRef = useRef()
 
     //localtest
@@ -32,16 +33,16 @@ function Search() {
         }
         setloading(true)
 
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(SearchValue)}& type=less`)
-            .then((res) => res.json())
-            .then((res) => {
-                setSearchresult(res.data)
-                setloading(false)
-            })
-            .catch(() => (
-                setloading(false)
-            ))
-    }, [SearchValue])
+        const fetchApi = async () => {
+            setloading(true)
+            const result = await searchServices.search(debounced)
+            console.log('res', result)
+            // setSearchresult(result)
+            setloading(false)
+        }
+        fetchApi()
+
+    }, [debounced])
 
 
     const handleClear = () => {

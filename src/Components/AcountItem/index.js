@@ -9,19 +9,19 @@ import styles from './AcountItem.module.scss'
 const cx = classNames.bind(styles)
 
 function AcountItem({ data }) {
-  return (
-    <Link to={`/@${data.nickname}`} className={cx('wrapper')}>
-      <Images src={data.avatar} alt={data.nickname} className={cx('avatar')} />
-      <div className={cx('info')}>
-        <h4 className={cx('name')}>
-          <span>{data.full_name}</span>
-          {data.tick && <FontAwesomeIcon className={cx('check')} icon={faCheckCircle} />
-          }
-        </h4>
-        <span className={cx('username')}>{data.nickname}</span>
-      </div>
+    return (
+        <Link to={`/@${data.nickname}`} className={cx('wrapper')}>
+            <Images src={data.avatar} alt={data.nickname} className={cx('avatar')} />
+            <div className={cx('info')}>
+                <h4 className={cx('name')}>
+                    <span>{data.full_name}</span>
+                    {data.tick && <FontAwesomeIcon className={cx('check')} icon={faCheckCircle} />
+                    }
+                </h4>
+                <span className={cx('username')}>{data.nickname}</span>
+            </div>
 
-    </Link>
-  )
+        </Link>
+    )
 }
 export default AcountItem

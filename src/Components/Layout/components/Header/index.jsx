@@ -2,7 +2,17 @@ import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
-import { faPlus, faEllipsisVertical, faEarthAmerica, faCircleQuestion, faKeyboard, faUser, faCoins, faGear, faSignOut } from '@fortawesome/free-solid-svg-icons';
+import {
+   faPlus,
+   faEllipsisVertical,
+   faEarthAmerica,
+   faCircleQuestion,
+   faKeyboard,
+   faUser,
+   faCoins,
+   faGear,
+   faSignOut,
+} from '@fortawesome/free-solid-svg-icons';
 
 //local import
 
@@ -14,6 +24,7 @@ import { MessageIcon, UploadIcon } from '~/Components/Icons';
 import Images from '~/Components/Images';
 import Search from '../Search';
 import { Link } from 'react-router-dom';
+import routesConfig from '~/config/routes';
 
 const cx = classNames.bind(styles);
 
@@ -81,7 +92,7 @@ function Header() {
       <header className={cx('wrapper')}>
          <div className={cx('inner')}>
             <div className={cx('logo')}>
-               <Link to='/'>
+               <Link to={routesConfig.home} className={cx('logo-link')}>
                   <img src={images.logo} alt='Tiktok' />
                </Link>
             </div>
@@ -97,7 +108,11 @@ function Header() {
                         <Icon className={cx('icon-plus')} icon={faPlus} />
                         Upload
                      </Button>
-                     <Tippy delay={[0, 300]} content='Messages' placement='bottom'>
+                     <Tippy
+                        delay={[0, 300]}
+                        content='Messages'
+                        placement='bottom'
+                     >
                         <button className={cx('action-btn')}>
                            <UploadIcon className={cx('icon-action')} />
                         </button>
@@ -119,9 +134,18 @@ function Header() {
                   </>
                )}
 
-               <Menu items={currentUser ? Menu_USERS : MENU_ITEMS} onChange={handleMenu}>
+               <Menu
+                  items={currentUser ? Menu_USERS : MENU_ITEMS}
+                  onChange={handleMenu}
+               >
                   {currentUser ? (
-                     <Images className={cx('user-avatar')} src={'https://gamek.mediacdn.vn/133514250583805952/2021/9/17/photo--1631856680040545802895.jpg'} alt={'hieuadmin'} />
+                     <Images
+                        className={cx('user-avatar')}
+                        src={
+                           'https://gamek.mediacdn.vn/133514250583805952/2021/9/17/photo--1631856680040545802895.jpg'
+                        }
+                        alt={'hieuadmin'}
+                     />
                   ) : (
                      <button className={cx('more-btn')}>
                         <Icon icon={faEllipsisVertical} />

@@ -13,7 +13,7 @@ function HeaderMenu({ title, onBack }) {
             <button className={cx('back-btn')} onClick={onBack}>
                 <Icon icon={faChevronLeft} />
             </button>
-            <h4 className={cx('header-title')}>{title}</h4>
+            <p className={cx('header-title')}>{title}</p>
         </header >
     )
 }

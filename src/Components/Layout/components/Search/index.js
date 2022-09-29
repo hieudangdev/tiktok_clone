@@ -16,98 +16,105 @@ const cx = classNames.bind(styles)
 
 function Search() {
 
-    const [Searchresult, setSearchresult] = useState([])
-    const [SearchValue, setSearchvalue] = useState('')
-    const [ShowResult, setShowresult] = useState(true)
-    const [loading, setloading] = useState(false)
+   const [Searchresult, setSearchresult] = useState([])
+   const [SearchValue, setSearchvalue] = useState('')
+   const [ShowResult, setShowresult] = useState(true)
+   const [loading, setloading] = useState(false)
 
 
-    const debounced = useDebounce(SearchValue, 500)
-    const inputRef = useRef()
+   const debounced = useDebounce(SearchValue, 500)
+   const inputRef = useRef()
 
-    //localtest
-    useEffect(() => {
-        if (!SearchValue.trim()) {
-            setSearchresult([])
-            return
-        }
-        setloading(true)
+   //localtest
+   useEffect(() => {
+      if (!SearchValue.trim()) {
+         setSearchresult([])
+         return
+      }
+      setloading(true)
 
-        const fetchApi = async () => {
-            setloading(true)
-            const result = await searchServices.search(debounced)
-            console.log('res', result)
-            // setSearchresult(result)
-            setloading(false)
-        }
-        fetchApi()
+      const fetchApi = async () => {
+         setloading(true)
+         const result = await searchServices.search(debounced)
 
-    }, [debounced])
+         setSearchresult(result)
+         setloading(false)
+      }
+      fetchApi()
 
+   }, [debounced])
 
-    const handleClear = () => {
-        inputRef.current.focus()
-        setSearchvalue('')
-        setSearchresult([])
-    }
+   const handleChange = (e) => {
+      const inputValue = e.target.value
+      if (!inputValue.startsWith(' ')) {
+         setSearchvalue(inputValue)
+      }
 
+   }
 
-    const handlehideResults = () => {
-
-        return setShowresult(false)
-    }
-
-    return (
-        <div>
-
-            <TippyHeadless
-                visible={ShowResult && Searchresult.length > 0}
-                interactive
-                render={(attrs) => (
-                    <div className={cx('search-result')} tabIndex='-1' {...attrs}>
-                        <PopperWrapper>
-                            <h4 className={cx('search-title')}>Accounts</h4>
-                            {Searchresult.map((result) => (
-                                <AcountItem key={result.id} data={result} />
-                            ))}
+   const handleClear = () => {
+      inputRef.current.focus()
+      setSearchvalue('')
+      setSearchresult([])
+   }
 
 
-                        </PopperWrapper>
-                    </div>
-                )}
+   const handleHideResults = () => {
 
-                onClickOutside={handlehideResults}
-            >
-                <div className={cx('search')}>
-                    <input
-                        ref={inputRef}
-                        value={SearchValue}
-                        placeholder='Search accounts and videos'
-                        spellCheck={false}
-                        onChange={(e) => {
-                            setSearchvalue(e.target.value)
-                        }}
-                        onFocus={() => setShowresult(true)}
-                    />
+      return setShowresult(false)
+   }
 
-                    {!!SearchValue && !loading &&
-                        <button className={cx('clear')}
-                            onClick={handleClear}
-                        >
-                            <Icon icon={faCircleXmark} />
-                        </button>
-                    }
+   return (
+      //use div to create a new parent content
+      //use div to unwarnings Tippy
+      <div>
+         <TippyHeadless
 
-                    {loading && <Icon className={cx('loading')} icon={faSpinner} />}
+            visible={ShowResult && Searchresult.length > 0}
+            interactive
+            render={(attrs) => (
+               <div className={cx('search-result')} tabIndex='-1' {...attrs}>
+                  <PopperWrapper>
+                     <h4 className={cx('search-title')}>Accounts</h4>
+                     {Searchresult.map((result) => (
+                        <AcountItem key={result.id} data={result} />
+                     ))}
 
 
-                    <button className={cx('search-btn')}>
-                        <SearchIcon />
-                    </button>
-                </div>
-            </TippyHeadless>
+                  </PopperWrapper>
+               </div>
+            )}
 
-        </div>
-    )
+            onClickOutside={handleHideResults}
+         >
+            <div className={cx('search')}>
+               <input
+                  ref={inputRef}
+                  value={SearchValue}
+                  placeholder='Search accounts and videos'
+                  spellCheck={false}
+                  onChange={handleChange}
+                  onFocus={() => setShowresult(true)}
+               />
+
+               {!!SearchValue && !loading &&
+                  <button className={cx('clear')}
+                     onClick={handleClear}
+                  >
+                     <Icon icon={faCircleXmark} />
+                  </button>
+               }
+
+               {loading && <Icon className={cx('loading')} icon={faSpinner} />}
+
+
+               <button className={cx('search-btn')} onMouseDown={e => e.preventDefault()} >
+                  <SearchIcon />
+               </button>
+            </div>
+         </TippyHeadless>
+
+      </div>
+   )
 }
 export default Search 

@@ -9,6 +9,10 @@
 
 .menu-popper {
    padding-bottom: 8px;
+   font-size: 1.4rem;
+}
+.menu-body {
+   overflow-y: auto;
 }
 
 .menu-item {
@@ -39,6 +43,7 @@
    height: 50px;
    display: flex;
    -webkit-box-align: center;
+   flex-shrink: 0;
    align-items: center;
 }
 
@@ -54,7 +59,7 @@
    top: 50%;
    left: 50%;
    font-weight: 600;
-   font-family: 'SF Mono', Courier, monospace;
+   font-family: var(--font-family);
    line-height: 22px;
    font-size: 1.6rem;
    transform: translate(-50%, -50%);

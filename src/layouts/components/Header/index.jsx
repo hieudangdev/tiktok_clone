@@ -24,7 +24,7 @@ import { MessageIcon, UploadIcon } from '~/Components/Icons';
 import Images from '~/Components/Images';
 import Search from '../Search';
 import { Link } from 'react-router-dom';
-import routesConfig from '~/config/routes';
+import routesConfig from '~/Routes/config/routes';
 
 const cx = classNames.bind(styles);
 

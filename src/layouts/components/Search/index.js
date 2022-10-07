@@ -10,7 +10,7 @@ import { Wrapper as PopperWrapper } from '~/Components/Popper'
 import AcountItem from '~/Components/AcountItem'
 import { SearchIcon } from '~/Components/Icons'
 import { useDebounce } from '~/Hooks'
-import * as searchServices from '~/ApiServices/searchServices'
+import * as searchService from '~/Services/searchService'
 
 const cx = classNames.bind(styles)
 
@@ -35,7 +35,7 @@ function Search() {
 
       const fetchApi = async () => {
          setloading(true)
-         const result = await searchServices.search(debounced)
+         const result = await searchService.search(debounced)
 
          setSearchresult(result)
          setloading(false)

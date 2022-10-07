@@ -5,6 +5,8 @@ import classNames from 'classnames/bind'
 import { Link } from 'react-router-dom'
 import Images from '../Images'
 import styles from './AcountItem.module.scss'
+import PropTypes from 'prop-types'
+
 
 const cx = classNames.bind(styles)
 
@@ -24,4 +26,11 @@ function AcountItem({ data }) {
         </Link>
     )
 }
+
+AcountItem.propTypes = {
+    data: PropTypes.object.isRequired,
+}
+
+
+
 export default AcountItem

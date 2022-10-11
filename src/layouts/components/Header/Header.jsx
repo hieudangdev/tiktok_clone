@@ -19,10 +19,10 @@ import {
 import styles from './Header.module.scss';
 import images from '~/assets/images';
 import Button from '~/Components/Button';
-import Menu from '~/Components/Popper/Menu';
-import { MessageIcon, UploadIcon } from '~/Components/Icons';
-import Images from '~/Components/Images';
-import Search from '../Search';
+import Menu from '~/Components/Popper/Menu/Menu';
+import { MessageIcon, UploadIcon } from '~/Components/Icons/Icons';
+import Images from '~/Components/Image/Image';
+import Search from '../Search/Search';
 import { Link } from 'react-router-dom';
 import routesConfig from '~/Routes/config/routes';
 
@@ -130,7 +130,7 @@ function Header() {
                         <Icon className={cx('icon-plus')} icon={faPlus} />
                         Upload
                      </Button>
-                     <Button primary> Log in</Button>
+                     <Button primary>Log in</Button>
                   </>
                )}
 

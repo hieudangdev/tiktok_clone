@@ -4,6 +4,7 @@ import Profile from "~/pages/Profile"
 import Upload from "~/pages/Upload"
 import HeaderOnly from "~/layouts/HeaderOnly"
 import Search from "~/pages/Search"
+import Live from "~/pages/Live"
 
 
 import config from '~/Routes/config'
@@ -15,7 +16,8 @@ const publicRoutes = [
    { path: config.routes.following, component: Following },
    { path: config.routes.profile, component: Profile },
    { path: config.routes.upload, component: Upload, layout: HeaderOnly },
-   { path: config.routes.search, component: Search, layout: null }
+   { path: config.routes.search, component: Search, layout: null },
+   { path: config.routes.live, component: Live },
 ]
 //login  
 const privateRoutes = [

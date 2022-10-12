@@ -11,6 +11,7 @@ import AcountItem from '~/Components/AcountItem/AcountItem'
 import { SearchIcon } from '~/Components/Icons/Icons'
 import { useDebounce } from '~/Hooks'
 import * as searchService from '~/Services/searchService'
+import SearchResult from './SearchResult'
 
 const cx = classNames.bind(styles)
 
@@ -18,32 +19,32 @@ function Search() {
 
    const [Searchresult, setSearchresult] = useState([])
    const [SearchValue, setSearchvalue] = useState('')
-   const [ShowResult, setShowresult] = useState(true)
+   const [ShowResult, setShowresult] = useState(false)
    const [loading, setloading] = useState(false)
 
 
-   const debounced = useDebounce(SearchValue, 500)
+   const debouncedvalue = useDebounce(SearchValue, 400)
    const inputRef = useRef()
 
    //localtest
-   // eslint-disable-next-line
+
    useEffect(() => {
-      if (!SearchValue.trim()) {
+      if (!debouncedvalue.trim()) {
          setSearchresult([])
          return
       }
-      setloading(true)
+
 
       const fetchApi = async () => {
          setloading(true)
-         const result = await searchService.search(debounced)
+         const result = await searchService.search(debouncedvalue)
 
          setSearchresult(result)
          setloading(false)
       }
       fetchApi()
 
-   }, [debounced])
+   }, [debouncedvalue])
 
    const handleChange = (e) => {
       const inputValue = e.target.value
@@ -77,9 +78,7 @@ function Search() {
                <div className={cx('search-result')} tabIndex='-1' {...attrs}>
                   <PopperWrapper>
                      <h4 className={cx('search-title')}>Accounts</h4>
-                     {Searchresult.map((result) => (
-                        <AcountItem key={result.id} data={result} />
-                     ))}
+                     {<SearchResult searchInput={Searchresult} />}
 
 
                   </PopperWrapper>

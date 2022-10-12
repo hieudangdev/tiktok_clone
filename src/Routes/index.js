@@ -1,1 +1,1 @@
-export { publicRoutes, privateRoutes } from './Routes'
+export * from './Routes'

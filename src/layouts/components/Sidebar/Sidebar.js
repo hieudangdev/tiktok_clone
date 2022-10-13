@@ -19,7 +19,8 @@ function Sidebar() {
             <MenuItem title='LIVE' to={config.routes.live} icon={<LiveIcon />} />
          </Menu>
 
-         <SuggestedAccounts label='Suggested accounts' />
+         <SuggestedAccounts label='Suggested accounts' more='See all' />
+         {/* <SuggestedAccounts label='Following accounts' more='See more' /> */}
 
       </aside>)
 }

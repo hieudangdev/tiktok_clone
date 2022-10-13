@@ -1,15 +1,17 @@
 .wrapper {
    font-size: 1.6rem;
-   font-weight: 700;
-   min-width: 100px;
+   font-weight: 600;
+   min-width: 106px;
+   min-height: 28px;
    padding: 6px 8px;
+   justify-content: center;
    line-height: 22px;
+   cursor: pointer;
    border-radius: 4px;
    background-color: var(--white);
    border: 1px solid transparent;
    text-align: center;
    white-space: nowrap;
-   user-select: none;
    + .wrapper {
       margin-left: 16px;
    }
@@ -31,7 +33,12 @@
    color: var(--white);
 
    &:hover {
-      background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)), #fe2c55;
+      background: linear-gradient(
+            0deg,
+            rgba(0, 0, 0, 0.06),
+            rgba(0, 0, 0, 0.06)
+         ),
+         #fe2c55;
    }
 }
 .outline {

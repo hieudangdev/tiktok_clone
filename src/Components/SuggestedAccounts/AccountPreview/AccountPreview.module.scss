@@ -1,0 +1,64 @@
+.wrapper {
+   width: 320px;
+   padding: 20px;
+
+   //    border-radius: 8px;
+}
+
+.avatar {
+   width: 44px;
+   height: 44px;
+   object-fit: cover;
+   border-radius: 50%;
+}
+.header {
+   display: flex;
+   flex-direction: row;
+   -webkit-box-align: center;
+   align-items: center;
+   -webkit-box-pack: justify;
+   justify-content: space-between;
+   margin-bottom: 12px;
+}
+
+.nickname {
+   display: flex;
+   -webkit-box-align: center;
+   align-items: center;
+}
+.name {
+   font-family: SofiaPro, Arial, Tahoma, PingFangSC, sans-serif;
+   font-weight: 700;
+   font-size: 18px;
+   line-height: 22px;
+}
+
+.check {
+   margin-left: 4px;
+   font-size: 1.4rem;
+   color: rgb(32, 213, 236);
+}
+
+.username {
+   color: rgba(22, 24, 35, 1);
+   font-weight: 600;
+   font-size: 1.4rem;
+   line-height: 20px;
+}
+.user-stats {
+   margin-top: 8px;
+   font-size: 17px;
+   line-height: 20px;
+   display: inline-block;
+}
+.stat-num {
+   font-weight: 700;
+   margin-right: 6px;
+}
+.stats {
+   margin-right: 12px;
+   color: rgba(22, 24, 35, 0.75);
+}
+.btn-follow{
+    
+}

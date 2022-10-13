@@ -4,13 +4,16 @@ import PropTypes from 'prop-types';
 import AcountItem from './AccountItem';
 const cx = classNames.bind(styles);
 
-function SuggestedAccounts({ label }) {
+function SuggestedAccounts({ label, more }) {
    return (
       <div className={cx('wrapper')}>
          <p className={cx('label')}>{label}</p>
          <AcountItem />
          <AcountItem />
          <AcountItem />
+         <AcountItem />
+
+         <p className={cx('more-btn')}> {more}</p>
       </div>
    );
 }

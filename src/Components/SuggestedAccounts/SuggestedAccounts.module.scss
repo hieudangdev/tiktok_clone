@@ -1,35 +1,52 @@
+.wrapper {
+   border-top: 1px solid rgba(22, 24, 35, 0.12);
+   padding: 16px 0px;
+}
+
 .label {
    padding: 0 8px;
    margin-bottom: 8px;
    font-size: 1.4rem;
    line-height: 20px;
+   color: rgba(22, 24, 35, 0.75);
 }
 .account-item {
+   padding: 8px;
    display: flex;
-   padding: 9px 16px;
-   cursor: pointer;
+   flex-direction: row;
+   -webkit-box-align: center;
    align-items: center;
-
+   position: relative;
+   border-radius: 4px;
+   transition: background-color 200ms ease-in-out 0s;
    &:hover {
       background-color: rgba(22, 24, 35, 0.03);
    }
 }
 
 .avatar {
-   width: 40px;
-   height: 40px;
+   width: 32px;
+   height: 32px;
    border-radius: 50%;
    margin-right: 12px;
    object-fit: cover;
+   cursor: pointer;
+   border-width: 0.5px;
 }
 
-.info {
-   flex: 1;
-   min-width: 0px;
-}
-
-.name {
+.item-info {
+   -webkit-box-flex: 1;
+   flex-grow: 1;
+   height: 32px;
    color: rgb(22, 24, 35);
+}
+
+.nickname {
+   display: flex;
+   -webkit-box-align: center;
+   align-items: center;
+}
+.name {
    font-family: SofiaPro, Arial, Tahoma, PingFangSC, sans-serif;
    font-weight: 700;
    font-size: 1.6rem;
@@ -41,15 +58,29 @@
    white-space: nowrap;
 }
 
-.nickname {
-   display: flex;
-   flex-direction: row;
-   -webkit-box-align: center;
-   align-items: center;
-}
-
 .check {
    margin-left: 4px;
    font-size: 1.4rem;
    color: rgb(32, 213, 236);
+}
+.username {
+   color: rgba(22, 24, 35, 0.75);
+   font-weight: 400;
+   font-size: 1.2rem;
+   line-height: 15px;
+
+   max-width: 260px;
+   text-overflow: ellipsis;
+   overflow: hidden;
+   white-space: nowrap;
+}
+
+.more-btn {
+   color: rgb(254, 44, 85);
+   font-weight: 600;
+   font-size: 1.4rem;
+   line-height: 20px;
+}
+.preview {
+   min-height: 100px;
 }

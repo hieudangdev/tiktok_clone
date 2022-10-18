@@ -21,6 +21,7 @@
    transition: background-color 200ms ease-in-out 0s;
    &:hover {
       background-color: rgba(22, 24, 35, 0.03);
+      cursor: pointer;
    }
 }
 
@@ -75,12 +76,6 @@
    white-space: nowrap;
 }
 
-.more-btn {
-   color: rgb(254, 44, 85);
-   font-weight: 600;
-   font-size: 1.4rem;
-   line-height: 20px;
-}
 .preview {
    min-height: 100px;
 }

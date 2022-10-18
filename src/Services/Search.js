@@ -1,11 +1,11 @@
-import * as request from '~/Utils/Request'
+import * as httprequest from '~/Utils/HttpRequest'
 
 
 
 export const search = async (q, type = 'less') => {
     try {
 
-        const res = await request.get(
+        const response = await httprequest.get(
             'users/search',
             {
                 params: {
@@ -13,7 +13,7 @@ export const search = async (q, type = 'less') => {
                     type,
                 }
             })
-        return res.data
+        return response.data
 
     } catch (error) {
         console.log(error)

@@ -28,29 +28,14 @@ function SuggestedAccounts({ data }) {
 
    return (
       <div>
-         <Tippy
-            interactive
-            offset={[0, 2]}
-            zIndex='99'
-            visible
-            delay={[900, 0]}
-            placement='bottom'
-            render={renderItems}
-         >
+         <Tippy interactive zIndex='99' delay={[900, 0]} placement='bottom-start' render={renderItems}>
             <div className={cx('account-item')}>
                <img className={cx('avatar')} src={data.avatar} alt='image' />
 
                <div className={cx('item-info')}>
-                  <div className={cx('nickname')}></div>
-                     <h4
-                        className={cx('name')}
-                     >{`${data.first_name} ${data.last_name} `}</h4>
-                     {data.tick && (
-                        <FontAwesomeIcon
-                           className={cx('check')}
-                           icon={faCheckCircle}
-                        />
-                     )}
+                  <div className={cx('item-name')}>
+                     <h4 className={cx('name')}> {`${data.first_name} ${data.last_name}`} </h4>
+                     {data.tick && <FontAwesomeIcon className={cx('check')} icon={faCheckCircle} />}
                   </div>
                   <p className={cx('username')}>{data.nickname}</p>
                </div>

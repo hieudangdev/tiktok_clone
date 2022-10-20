@@ -41,7 +41,12 @@
    height: 32px;
    color: rgb(22, 24, 35);
 }
-
+.item-name {
+   display: flex;
+   flex-direction: row;
+   -webkit-box-align: center;
+   align-items: center;
+}
 .nickname {
    display: flex;
    -webkit-box-align: center;

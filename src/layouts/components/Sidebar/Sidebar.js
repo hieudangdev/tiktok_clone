@@ -21,7 +21,7 @@ function Sidebar() {
       const fetchAPI = async () => {
 
          if (!isSeeAll) {
-            const result = await SuggestedServices.Suggest(1, 5)
+            const result = await SuggestedServices.Suggest(1, 4)
             setSuggests(result)
          } else {
             const result = await SuggestedServices.Suggest(1, 16)
@@ -29,6 +29,7 @@ function Sidebar() {
          }
       }
       fetchAPI()
+
    }, [isSeeAll])
 
    console.log(suggests)
@@ -44,9 +45,7 @@ function Sidebar() {
             <p className={cx('more-btn')} > Suggested accounts</p>
             {suggests.map((suggest) => {
                return <SuggestedAccounts key={suggest.id} data={suggest} />
-
             })}
-
             {isSeeAll
                ?
                <div className={cx('see-all')} onClick={() => setisSeeAll(false)}>See less</div>

@@ -2,14 +2,22 @@
    border-top: 1px solid rgba(22, 24, 35, 0.12);
    padding: 16px 0px;
 }
+.more-btn {
+   color: rgb(254, 44, 85);
+   font-weight: 600;
+   font-size: 1.4rem;
+   line-height: 20px;
+   cursor: pointer;
+}
 
-.label {
+.title {
    padding: 0 8px;
    margin-bottom: 8px;
-   font-size: 1.4rem;
+   font-size: 14px;
    line-height: 20px;
    color: rgba(22, 24, 35, 0.75);
 }
+
 .account-item {
    padding: 8px;
    display: flex;

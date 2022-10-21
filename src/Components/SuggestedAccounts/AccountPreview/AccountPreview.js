@@ -4,6 +4,7 @@ import styles from './AccountPreview.module.scss'
 import PropTypes from 'prop-types'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
+import Image from '~/Components/Image'
 
 const cx = classNames.bind(styles)
 
@@ -11,7 +12,7 @@ function AccountPreview({ nickname, username, followers, likes, avatar, check })
     return (
         <div className={cx('wrapper')} >
             <div className={cx('header')}>
-                <img className={cx('avatar')} src={avatar} alt='' />
+                <Image className={cx('avatar')} src={avatar} alt={avatar} />
                 <Button primary className={cx('btn-follow')}   >Follow</Button>
             </div>
             <div className={cx('body')} >

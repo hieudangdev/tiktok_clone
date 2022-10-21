@@ -5,8 +5,6 @@ import Menu, { MenuItem } from './Menu'
 import config from '~/Routes/config'
 import { FollowingIcon, HomeIcon, LiveIcon } from '~/Components/Icons'
 import SuggestedAccounts from '~/Components/SuggestedAccounts'
-import { useEffect, useState } from 'react'
-import * as SuggestedServices from '~/Services/SuggestedAcounts'
 
 const cx = classNames.bind(styles)
 
@@ -14,25 +12,6 @@ const cx = classNames.bind(styles)
 
 
 function Sidebar() {
-   const [isSeeAll, setisSeeAll] = useState(false)
-   const [suggests, setSuggests] = useState([])
-
-   useEffect(() => {
-      const fetchAPI = async () => {
-
-         if (!isSeeAll) {
-            const result = await SuggestedServices.Suggest(1, 4)
-            setSuggests(result)
-         } else {
-            const result = await SuggestedServices.Suggest(1, 16)
-            setSuggests(result)
-         }
-      }
-      fetchAPI()
-
-   }, [isSeeAll])
-
-   console.log(suggests)
    return (
       <aside className={cx('wrapper')}>
          <Menu>
@@ -41,28 +20,8 @@ function Sidebar() {
             <MenuItem title='LIVE' to={config.routes.live} icon={<LiveIcon />} />
          </Menu>
 
-         <div className={cx('suggested')}>
-            <p className={cx('more-btn')} > Suggested accounts</p>
-            {suggests.map((suggest) => {
-               return <SuggestedAccounts key={suggest.id} data={suggest} />
-            })}
-            {isSeeAll
-               ?
-               <div className={cx('see-all')} onClick={() => setisSeeAll(false)}>See less</div>
-               :
-               <div className={cx('see-all')} onClick={() => setisSeeAll(true)}>See all</div>
-            }
-         </div>
-         {/* <div className={cx('following')}>
-            <p className={cx('title')}>Following accounts</p>
-            <SuggestedAccounts />
-            <SuggestedAccounts />
-            <SuggestedAccounts />
-            <SuggestedAccounts />
-
-            <div className={cx('see-all')}>See more</div>
-         </div> */}
-
+         <SuggestedAccounts title='Suggested accounts' items='4' itemsMore='8' page='3' moreBtn='See all' moreBtn_less='See less' />
+         <SuggestedAccounts title='Following accounts' items='6' itemsMore='10' page='6' moreBtn='See more' moreBtn_less='See more' />
 
       </aside >)
 }

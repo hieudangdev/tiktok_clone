@@ -1,52 +1,76 @@
-import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Tippy from '@tippyjs/react/headless';
-import { Wrapper as PopperWrapper } from '~/Components/Popper';
-import AccountPreview from './AccountPreview';
 import classNames from 'classnames/bind';
 import styles from './SuggestedAccounts.module.scss';
 import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
+import * as SuggestedServices from '~/Services/SuggestedAcounts';
+import AccountItem from './AccountItem';
+
 const cx = classNames.bind(styles);
 
-function SuggestedAccounts({ data }) {
-   console.log('datane', data);
+function SuggestedAccounts({ title, moreBtn, page, moreBtn_less, items, itemsMore }) {
+   const [ismoreBtn, setismoreBtn] = useState(false);
+   const [itemsShow, setitemShow] = useState(items);
+   const [suggests, setsuggests] = useState([]);
+   console.log(page, items, itemsMore);
 
-   const renderItems = (props) => (
-      <div className={cx('Item-list')} tabIndex='-1' {...props}>
-         <PopperWrapper className={cx('preview')}>
-            <AccountPreview
-               nickname={`${data.first_name} ${data.last_name} `}
-               username={data.nickname}
-               followers={data.followers_count}
-               likes={data.likes_count}
-               avatar={data.avatar}
-               check={data.tick}
-            />
-         </PopperWrapper>
-      </div>
-   );
+   // useEffect(() => {
+   //    const fetchAPI = async () => {
+   //       const result = await SuggestedServices.Suggest(3, 6);
+   //       setsuggests(result);
+   //    };
+   //    fetchAPI();
+   // }, [1]);
 
+   useEffect(() => {
+      const fetchAPI = async () => {
+         const result = await SuggestedServices.Suggest(page, itemsMore);
+         setsuggests(result);
+      };
+      fetchAPI();
+   }, []);
+
+   console.log('resulst', ismoreBtn, suggests);
    return (
-      <div>
-         <Tippy interactive zIndex='99' delay={[900, 0]} placement='bottom-start' render={renderItems}>
-            <div className={cx('account-item')}>
-               <img className={cx('avatar')} src={data.avatar} alt='image' />
-
-               <div className={cx('item-info')}>
-                  <div className={cx('item-name')}>
-                     <h4 className={cx('name')}> {`${data.first_name} ${data.last_name}`} </h4>
-                     {data.tick && <FontAwesomeIcon className={cx('check')} icon={faCheckCircle} />}
-                  </div>
-                  <p className={cx('username')}>{data.nickname}</p>
-               </div>
+      <div className={cx('wrapper')}>
+         <p className={cx('title')}>{title}</p>
+         {suggests.map((suggest, index) => {
+            if (index < itemsShow) {
+               return <AccountItem key={suggest.id} data={suggest} />;
+            } else {
+               return;
+            }
+         })}
+         {ismoreBtn ? (
+            <div
+               className={cx('more-btn')}
+               onClick={() => {
+                  setismoreBtn(false);
+                  return setitemShow(items);
+               }}
+            >
+               {moreBtn_less}
             </div>
-         </Tippy>
+         ) : (
+            <div
+               className={cx('more-btn')}
+               onClick={() => {
+                  setismoreBtn(true);
+                  return setitemShow(itemsMore);
+               }}
+            >
+               {moreBtn}
+            </div>
+         )}
       </div>
    );
 }
 
 SuggestedAccounts.propTypes = {
-   label: PropTypes.string.isRequired,
+   title: PropTypes.string.isRequired,
+   page: PropTypes.string.isRequired,
+   moreBtn: PropTypes.string.isRequired,
+   moreBtn_less: PropTypes.string.isRequired,
+   items: PropTypes.string.isRequired,
 };
 
 export default SuggestedAccounts;

@@ -108,11 +108,7 @@ function Header() {
                         <Icon className={cx('icon-plus')} icon={faPlus} />
                         Upload
                      </Button>
-                     <Tippy
-                        delay={[0, 300]}
-                        content='Messages'
-                        placement='bottom'
-                     >
+                     <Tippy delay={[0, 300]} content='Messages' placement='bottom'>
                         <button className={cx('action-btn')}>
                            <UploadIcon className={cx('icon-action')} />
                         </button>
@@ -134,16 +130,11 @@ function Header() {
                   </>
                )}
 
-               <Menu
-                  items={currentUser ? Menu_USERS : MENU_ITEMS}
-                  onChange={handleMenu}
-               >
+               <Menu items={currentUser ? Menu_USERS : MENU_ITEMS} onChange={handleMenu}>
                   {currentUser ? (
                      <Images
                         className={cx('user-avatar')}
-                        src={
-                           'https://gamek.mediacdn.vn/133514250583805952/2021/9/17/photo--1631856680040545802895.jpg'
-                        }
+                        src={'https://gamek.mediacdn.vn/133514250583805952/2021/9/17/photo--1631856680040545802895.jpg'}
                         alt={'hieuadmin'}
                      />
                   ) : (

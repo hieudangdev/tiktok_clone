@@ -8,7 +8,7 @@
    transition: background-color ease-in-out 200ms;
    justify-content: flex-start;
    &:hover {
-      background-color: rgba(22, 24, 35, 0.05);
+      background-color: rgba(22, 24, 35, 0.03);
    }
    &.active {
       color: var(--primary);

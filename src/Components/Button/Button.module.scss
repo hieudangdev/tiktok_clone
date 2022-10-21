@@ -2,7 +2,7 @@
    font-size: 1.6rem;
    font-weight: 600;
    min-width: 106px;
-   min-height: 28px;
+   min-height: 36px;
    padding: 6px 8px;
    justify-content: center;
    line-height: 22px;
@@ -33,12 +33,7 @@
    color: var(--white);
 
    &:hover {
-      background: linear-gradient(
-            0deg,
-            rgba(0, 0, 0, 0.06),
-            rgba(0, 0, 0, 0.06)
-         ),
-         #fe2c55;
+      background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)), #fe2c55;
    }
 }
 .outline {

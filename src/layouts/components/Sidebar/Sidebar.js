@@ -20,8 +20,8 @@ function Sidebar() {
             <MenuItem title='LIVE' to={config.routes.live} icon={<LiveIcon />} />
          </Menu>
 
-         <SuggestedAccounts title='Suggested accounts' items='4' itemsMore='8' page='3' moreBtn='See all' moreBtn_less='See less' />
-         <SuggestedAccounts title='Following accounts' items='6' itemsMore='10' page='6' moreBtn='See more' moreBtn_less='See more' />
+         <SuggestedAccounts title='Suggested accounts' items='5' itemsMore='8' page='3' moreBtn='See all' moreBtn_less='See less' />
+         <SuggestedAccounts title='Following accounts' items='7' itemsMore='10' page='6' moreBtn='See more' moreBtn_less='See more' />
 
       </aside >)
 }

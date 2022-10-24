@@ -11,15 +11,6 @@ function SuggestedAccounts({ title, moreBtn, page, moreBtn_less, items, itemsMor
    const [ismoreBtn, setismoreBtn] = useState(false);
    const [itemsShow, setitemShow] = useState(items);
    const [suggests, setsuggests] = useState([]);
-   console.log(page, items, itemsMore);
-
-   // useEffect(() => {
-   //    const fetchAPI = async () => {
-   //       const result = await SuggestedServices.Suggest(3, 6);
-   //       setsuggests(result);
-   //    };
-   //    fetchAPI();
-   // }, [1]);
 
    useEffect(() => {
       const fetchAPI = async () => {
@@ -29,7 +20,6 @@ function SuggestedAccounts({ title, moreBtn, page, moreBtn_less, items, itemsMor
       fetchAPI();
    }, []);
 
-   console.log('resulst', ismoreBtn, suggests);
    return (
       <div className={cx('wrapper')}>
          <p className={cx('title')}>{title}</p>

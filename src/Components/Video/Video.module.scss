@@ -1,0 +1,42 @@
+.wrapper {
+   display: flex;
+   align-items: flex-start;
+   position: relative;
+   max-width: 692px;
+   flex-direction: row;
+}
+
+.avatar {
+   width: 56px;
+   height: 56px;
+   border-radius: 50%;
+   margin-right: 12px;
+   object-fit: cover;
+   cursor: pointer;
+   border-width: 0.5px;
+}
+
+.container {
+   margin-left: 12px;
+   width: 624px;
+   flex: 1 1 624px;
+}
+
+.info {
+   margin-right: 114px;
+}
+.media {
+   position: relative;
+   box-sizing: border-box;
+   background: #eee center no-repeat;
+   -webkit-background-size: cover;
+   background-size: cover;
+   cursor: pointer;
+   border-radius: 8px;
+   overflow: hidden;
+   margin-right: 20px;
+   @media screen and (max-width: 1919px) {
+      height: calc(450px + (100vw - 768px) / 1152 * 100);
+   }
+   height: 600px;
+}

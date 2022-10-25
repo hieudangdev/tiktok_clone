@@ -1,18 +1,18 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
-import * as VideoHome from '~/Services/Video';
+import * as HomeServices from '~/Services/Video';
 import classNames from 'classnames/bind';
 import styles from './Home.module.scss';
 import Video from '~/Components/Video/';
 
-const cx = classNames.styles();
+const cx = classNames.bind(styles);
 
 function Home() {
    const [videos, setvideos] = useState([]);
 
    useEffect(() => {
       const fetchAPI = async () => {
-         const result = await VideoHome.videoHome();
+         const result = await HomeServices.VideoApi();
          setvideos(result);
       };
       fetchAPI();

@@ -12,7 +12,7 @@ function Home() {
 
    useEffect(() => {
       const fetchAPI = async () => {
-         const result = await HomeServices.VideoApi();
+         const result = await HomeServices.VideoApi('for-you', '2');
          setvideos(result);
       };
       fetchAPI();

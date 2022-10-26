@@ -2,7 +2,10 @@
    display: flex;
    align-items: flex-start;
    position: relative;
-   max-width: 692px;
+   padding: 20px 0;
+   width: 100%;
+   // max-width: 900px;
+   box-shadow: 10px 10px px rgba(0, 0, 0, 0.3);
    flex-direction: row;
 }
 
@@ -18,12 +21,32 @@
 
 .container {
    margin-left: 12px;
-   width: 624px;
-   flex: 1 1 624px;
+   font-weight: 700;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   font-size: 1.6rem;
 }
 
 .info {
-   margin-right: 114px;
+   display: flex;
+   flex: 1;
+   justify-items: end;
+   align-items: flex-end;
+}
+.bio {
+   display: flex;
+}
+.user {
+}
+.username {
+   font-weight: 700;
+   font-size: 1.8rem;
+   line-height: 25px;
+}
+.fullname {
+   font-weight: 400;
+   font-size: 1.4rem;
 }
 .media {
    position: relative;
@@ -39,4 +62,66 @@
       height: calc(450px + (100vw - 768px) / 1152 * 100);
    }
    height: 600px;
+}
+.check {
+   margin-left: 4px;
+   font-size: 1.4rem;
+   color: rgb(32, 213, 236);
+}
+
+.caption {
+   font-weight: 400;
+   font-size: 1.6rem;
+}
+
+.title_music {
+   text-decoration-skip-ink: auto;
+   color: rgba(22, 24, 35, 1);
+   transition: color 250ms;
+   text-decoration: none;
+   cursor: pointer;
+}
+
+.actions {
+   display: flex;
+   flex-direction: column;
+   flex: 1;
+   justify-content: flex-end;
+   button {
+      margin-top: 8px;
+      margin-bottom: 6px;
+   }
+}
+.btn-wrapper {
+   -webkit-box-align: center;
+   align-items: center;
+   padding: 0;
+   outline: none;
+   display: flex;
+   width: 48px;
+   height: 79px;
+   flex-direction: column;
+}
+.btn-action {
+   color: rgb(22, 24, 35);
+   display: flex;
+   -webkit-box-pack: center;
+   justify-content: center;
+   -webkit-box-align: center;
+   align-items: center;
+   width: 48px;
+   height: 48px;
+   font-size: 0px;
+   border-radius: 50%;
+   transition: all ease-in-out 200ms;
+   background-color: rgba(22, 24, 35, 0.06);
+   margin-top: 8px;
+   margin-bottom: 6px;
+}
+
+.numbers {
+   color: rgba(22, 24, 35, 0.75);
+   font-size: 12px;
+   line-height: 17px;
+   text-align: center;
 }

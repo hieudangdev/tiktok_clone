@@ -1,14 +1,52 @@
 .wrapper {
    display: flex;
-   align-items: flex-start;
    position: relative;
    padding: 20px 0;
    width: 100%;
-   // max-width: 900px;
+   margin-bottom: 10px;
+   flex: 1;
    box-shadow: 10px 10px px rgba(0, 0, 0, 0.3);
-   flex-direction: row;
 }
+.container {
+   margin-left: 12px;
+   padding: 10px 0px;
+   font-weight: 700;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   font-size: 1.6rem;
+}
+.videoWrapper {
+   margin: 0px 10px 0px 20px;
+   display: block;
+   position: relative;
+}
+.media {
+   background: #eee center no-repeat;
+   -webkit-background-size: cover;
+   background-size: cover;
+   cursor: pointer;
+   border-radius: 8px;
+   overflow: hidden;
+   display: block;
 
+   @media screen and (max-width: 1919px) {
+      height: calc(450px + (100vw - 768px) / 1152 * 100);
+   }
+}
+.control-play {
+   background-color: transparent;
+   position: absolute;
+   top: 0;
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+   opacity: 0.8;
+   align-items: center;
+   right: 0;
+   left: 0;
+   bottom: 0;
+}
 .avatar {
    width: 56px;
    height: 56px;
@@ -19,26 +57,15 @@
    border-width: 0.5px;
 }
 
-.container {
-   margin-left: 12px;
-   font-weight: 700;
-   display: flex;
-   flex-direction: column;
-   justify-content: space-between;
-   font-size: 1.6rem;
-}
-
 .info {
    display: flex;
-   flex: 1;
-   justify-items: end;
-   align-items: flex-end;
+   justify-content: space-between;
+   padding-top: 10px;
 }
 .bio {
    display: flex;
 }
-.user {
-}
+
 .username {
    font-weight: 700;
    font-size: 1.8rem;
@@ -48,21 +75,7 @@
    font-weight: 400;
    font-size: 1.4rem;
 }
-.media {
-   position: relative;
-   box-sizing: border-box;
-   background: #eee center no-repeat;
-   -webkit-background-size: cover;
-   background-size: cover;
-   cursor: pointer;
-   border-radius: 8px;
-   overflow: hidden;
-   margin-right: 20px;
-   @media screen and (max-width: 1919px) {
-      height: calc(450px + (100vw - 768px) / 1152 * 100);
-   }
-   height: 600px;
-}
+
 .check {
    margin-left: 4px;
    font-size: 1.4rem;
@@ -79,13 +92,15 @@
    color: rgba(22, 24, 35, 1);
    transition: color 250ms;
    text-decoration: none;
+   margin-top: 20px;
+
+   align-items: center;
    cursor: pointer;
 }
 
-.actions {
+.action {
    display: flex;
    flex-direction: column;
-   flex: 1;
    justify-content: flex-end;
    button {
       margin-top: 8px;

@@ -18,34 +18,104 @@
 }
 .videoWrapper {
    margin: 0px 10px 0px 20px;
+   cursor: default;
    display: block;
    position: relative;
-   z-index: 10;
-   :hover ~ .control-play {
-      opacity: 0.8;
+   &:hover {
+      .control-play,
+      .control-volume {
+         opacity: 1;
+      }
    }
 }
 .media {
    background: #eee center no-repeat;
    -webkit-background-size: cover;
    background-size: cover;
-   cursor: pointer;
    border-radius: 8px;
    overflow: hidden;
-   display: block;
 
    @media screen and (max-width: 1919px) {
       height: calc(450px + (100vw - 768px) / 1152 * 100);
    }
 }
 .control-play {
-   background-color: transparent;
    position: absolute;
+   left: 12px;
+   width: 40px;
+   height: 40px;
+   padding: 10px;
+
    opacity: 0;
-   left: 10px;
-   box-sizing: border-box;
-   bottom: 10px;
+   transition: opacity 0.3s;
+   bottom: 26px;
 }
+//btn volume
+.control-volume {
+   position: absolute;
+   bottom: 37px;
+   left: unset;
+   right: 24px;
+   -webkit-transition: opacity 0.3s;
+   transition: opacity 0.3s;
+   opacity: 0;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+
+   &.active {
+      opacity: 1;
+
+      .container {
+         opacity: 0;
+      }
+   }
+
+   &:hover {
+      .container {
+         display: block;
+      }
+   }
+
+   .containerVolume {
+      display: flex;
+      width: 24px;
+      height: 64px;
+      margin: 8px 7px;
+      position: relative;
+      cursor: initial;
+      background: rgba(22, 24, 35, 0.34);
+      border-radius: 32px;
+   }
+
+   .volume-icon {
+      display: flex;
+   }
+
+   input {
+      -webkit-appearance: none;
+      background-color: #fff;
+      border-radius: 4px;
+      bottom: 30px;
+      height: 2px;
+      position: absolute;
+      right: -11px;
+      -webkit-transform: rotate(-90deg);
+      transform: rotate(-90deg);
+      width: 46px;
+
+      &::-webkit-slider-thumb {
+         -webkit-appearance: none;
+         width: 12px;
+         height: 12px;
+         background-color: #fff;
+         border-radius: 50%;
+         cursor: pointer;
+      }
+   }
+}
+//bio info acccounts
 .avatar {
    width: 56px;
    height: 56px;

@@ -6,26 +6,28 @@ import { Link } from 'react-router-dom';
 import Image from '../Image';
 import Button from '../Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckCircle, faRandom } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle, faL, faRandom } from '@fortawesome/free-solid-svg-icons';
 import {
    CommentIcon,
+   FlagIcon,
    HeartIcon,
    HeartSoidIcon,
    MusicIcon,
+   MutedIcon,
    PauseIcon,
    PlaySolidIcon,
    ShareIcon,
    ShareSolidIcon,
+   VolumeIcon,
 } from '../Icons';
 
 const cx = classNames.bind(styles);
 
-function Video({ data }) {
-   const [isPlaying, setIsPlaying] = useState(true);
+function Video({ data, mute, volume, adjustVolume, toggleMuted }) {
+   const [isPlaying, setIsPlaying] = useState(false);
    const [like, setlike] = useState(false);
    const videoRef = useRef();
 
-   // videoRef.current.play();
    const playVideo = () => {
       if (isPlaying === false) {
          videoRef.current.play();
@@ -51,12 +53,14 @@ function Video({ data }) {
    function PlayVideoInViewPort() {
       var bounding = videoRef.current.getBoundingClientRect();
       console.log(bounding);
+
       // playVideo();
+
       if (
          bounding.top >= 0 &&
          bounding.left >= 0 &&
          bounding.right <= (window.innerWidth || document.documentElement.clientWidth) &&
-         bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) + 100
+         bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight)
       ) {
          playVideo();
       } else {
@@ -71,10 +75,31 @@ function Video({ data }) {
 
    return (
       <div className={cx('wrapper')}>
-         <div className={cx('videoWrapper')}>
+         <div className={cx('videoWrapper')} onDoubleClick={(e) => setlike(true)}>
             <video loop className={cx('media')} src={data?.file_url} ref={videoRef}></video>
-            <div className={cx('control-play')} onClick={togglePlayVideo} onDoubleClick={(e) => setlike(true)}>
+            <div className={cx('control-play')} onClick={togglePlayVideo}>
                {isPlaying ? <PauseIcon /> : <PlaySolidIcon />}
+            </div>
+            <div className={cx('control-volume', { active: mute })}>
+               <div className={cx('containerVolume')}>
+                  <input
+                     type='range'
+                     min='0'
+                     max='100'
+                     step='1'
+                     orient='vertical'
+                     onChange={adjustVolume}
+                     value={volume * 100}
+                  />
+               </div>
+
+               <div className={cx('volume-icon')} onClick={toggleMuted}>
+                  {mute ? <MutedIcon /> : <VolumeIcon />}
+               </div>
+            </div>
+
+            <div className={cx('report')}>
+               <FlagIcon /> Report
             </div>
          </div>
 
@@ -102,19 +127,19 @@ function Video({ data }) {
             </div>
             <div className={cx('actions')}>
                <div className={cx('btn-wrapper')}>
-                  <button rounded className={cx('btn-action')} onClick={() => setlike(!like)}>
+                  <button className={cx('btn-action')} onClick={() => setlike(!like)}>
                      {like ? <HeartSoidIcon /> : <HeartIcon />}
                   </button>
                   <p className={cx('numbers')}>{data?.likes_count || Math.floor(Math.random() * 1000) + 1}</p>
                </div>
                <div className={cx('btn-wrapper')}>
-                  <button rounded className={cx('btn-action')}>
+                  <button className={cx('btn-action')}>
                      <CommentIcon />
                   </button>
                   <p className={cx('numbers')}>{data?.comments_count || Math.floor(Math.random() * 1000) + 1}</p>
                </div>
                <div className={cx('btn-wrapper')}>
-                  <button rounded className={cx('btn-action')}>
+                  <button className={cx('btn-action')}>
                      <ShareSolidIcon />
                   </button>
                   <p className={cx('numbers')}>{data?.shares_count || Math.floor(Math.random() * 1000) + 1}</p>

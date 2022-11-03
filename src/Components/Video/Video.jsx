@@ -17,12 +17,11 @@ import {
    ShareIcon,
    ShareSolidIcon,
 } from '../Icons';
-import { click } from '@testing-library/user-event/dist/click';
 
 const cx = classNames.bind(styles);
 
 function Video({ data }) {
-   const [isPlaying, setIsPlaying] = useState(false);
+   const [isPlaying, setIsPlaying] = useState(true);
    const [like, setlike] = useState(false);
    const videoRef = useRef();
 
@@ -74,8 +73,7 @@ function Video({ data }) {
       <div className={cx('wrapper')}>
          <div className={cx('videoWrapper')}>
             <video loop className={cx('media')} src={data?.file_url} ref={videoRef}></video>
-
-            <div className={cx('control-play')} onClick={togglePlayVideo}>
+            <div className={cx('control-play')} onClick={togglePlayVideo} onDoubleClick={(e) => setlike(true)}>
                {isPlaying ? <PauseIcon /> : <PlaySolidIcon />}
             </div>
          </div>

@@ -1,12 +1,12 @@
 import classNames from 'classnames/bind';
 import styles from './Video.module.scss';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 // import Image from '~/Image';
 import { Link } from 'react-router-dom';
 import Image from '../Image';
 import Button from '../Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckCircle, faL, faRandom } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import {
    CommentIcon,
    FlagIcon,
@@ -16,67 +16,83 @@ import {
    MutedIcon,
    PauseIcon,
    PlaySolidIcon,
-   ShareIcon,
    ShareSolidIcon,
    VolumeIcon,
 } from '../Icons';
+import { useRef } from 'react';
+import { useElementOnScreen } from './VideoOnScreen';
 
 const cx = classNames.bind(styles);
 
 function Video({ data, mute, volume, adjustVolume, toggleMuted }) {
    const [isPlaying, setIsPlaying] = useState(false);
    const [like, setlike] = useState(false);
+
    const videoRef = useRef();
 
-   const playVideo = () => {
+   useEffect(() => {
+      if (mute) {
+         videoRef.current.volume = 0;
+      } else videoRef.current.volume = volume;
+   });
+
+   // const playVideo = () => {
+   //    if (isPlaying === false) {
+   //       videoRef.current.play();
+   //
+   //    }
+   // };
+
+   // const pauseVideo = () => {
+   //    if (isPlaying === true) {
+   //       videoRef.current.pause();
+   //       setIsPlaying(false);
+   //    }
+   // };
+
+   const togglePlayVideo = () => {
       if (isPlaying === false) {
          videoRef.current.play();
          setIsPlaying(true);
-      }
-   };
-
-   const pauseVideo = () => {
-      if (isPlaying === true) {
+      } else {
          videoRef.current.pause();
          setIsPlaying(false);
       }
    };
 
-   const togglePlayVideo = () => {
-      if (isPlaying === false) {
-         playVideo();
-      } else {
-         pauseVideo();
-      }
+   const options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.5,
    };
-
-   function PlayVideoInViewPort() {
-      var bounding = videoRef.current.getBoundingClientRect();
-      console.log(bounding);
-
-      // playVideo();
-
-      if (
-         bounding.top >= 0 &&
-         bounding.left >= 0 &&
-         bounding.right <= (window.innerWidth || document.documentElement.clientWidth) &&
-         bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight)
-      ) {
-         playVideo();
-      } else {
-         pauseVideo();
-      }
-   }
+   const isVisibile = useElementOnScreen(options, videoRef);
 
    useEffect(() => {
-      window.addEventListener('scroll', PlayVideoInViewPort);
-      return () => window.addEventListener('scroll', PlayVideoInViewPort);
-   }, []);
+      if (isVisibile) {
+         if (!isPlaying) {
+            videoRef.current.play();
+            setIsPlaying(true);
+         }
+      } else {
+         if (isPlaying) {
+            videoRef.current.pause();
+            setIsPlaying(false);
+         }
+      }
+   }, [isVisibile]);
 
    return (
       <div className={cx('wrapper')}>
          <div className={cx('videoWrapper')} onDoubleClick={(e) => setlike(true)}>
-            <video loop className={cx('media')} src={data?.file_url} ref={videoRef}></video>
+            <video
+               ref={videoRef}
+               volume={volume}
+               playsInline={true}
+               loop
+               autoPlay
+               className={cx('media')}
+               src={data?.file_url}
+            ></video>
             <div className={cx('control-play')} onClick={togglePlayVideo}>
                {isPlaying ? <PauseIcon /> : <PlaySolidIcon />}
             </div>
@@ -94,7 +110,7 @@ function Video({ data, mute, volume, adjustVolume, toggleMuted }) {
                </div>
 
                <div className={cx('volume-icon')} onClick={toggleMuted}>
-                  {mute ? <MutedIcon /> : <VolumeIcon />}
+                  {mute || volume == 0 ? <MutedIcon /> : <VolumeIcon />}
                </div>
             </div>
 
@@ -121,7 +137,7 @@ function Video({ data, mute, volume, adjustVolume, toggleMuted }) {
                   </div>
                </div>
                <div className={cx('caption')}>
-                  Cầm 45K Ăn Sập Lotte Cinema Huế Và Cái Kết #ansaphue #dcgr #reviewanngon #ancungtiktok #lottecinema
+                  {data?.description} Và Cái Kết #ansaphue #dcgr #reviewanngon #ancungtiktok #lottecinema
                </div>
                <div className={cx('title_music')}> {<MusicIcon />}Gu - Freaky Seachains</div>
             </div>

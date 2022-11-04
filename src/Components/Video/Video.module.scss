@@ -23,6 +23,7 @@
    position: relative;
    &:hover {
       .control-play,
+      .report,
       .control-volume {
          opacity: 1;
       }
@@ -45,7 +46,6 @@
    width: 40px;
    height: 40px;
    padding: 10px;
-
    opacity: 0;
    transition: opacity 0.3s;
    bottom: 26px;
@@ -64,17 +64,9 @@
    justify-content: center;
    align-items: center;
 
-   &.active {
-      opacity: 1;
-
-      .container {
-         opacity: 0;
-      }
-   }
-
    &:hover {
-      .container {
-         display: block;
+      .containerVolume {
+         opacity: 1;
       }
    }
 
@@ -82,6 +74,9 @@
       display: flex;
       width: 24px;
       height: 64px;
+      transform: o;
+      opacity: 0;
+      transition: opacity 0.3ss;
       margin: 8px 7px;
       position: relative;
       cursor: initial;
@@ -114,6 +109,15 @@
          cursor: pointer;
       }
    }
+}
+
+// report
+.report {
+   position: absolute;
+   top: 15px;
+   right: 18px;
+   color: #fff;
+   opacity: 0;
 }
 //bio info acccounts
 .avatar {

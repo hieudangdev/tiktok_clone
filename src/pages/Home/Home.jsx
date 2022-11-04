@@ -10,16 +10,21 @@ const cx = classNames.bind(styles);
 function Home() {
    const [videos, setvideos] = useState([]);
    const [page, setPage] = useState(1);
-   const [volume, setVolume] = useState(0.4);
+   const [volume, setVolume] = useState(0.2);
    const [prevVolume, setPrevVolume] = useState(volume);
    const [mute, setMute] = useState(true);
 
    useEffect(() => {
       const fetchAPI = async () => {
          const result = await HomeServices.VideoApi('for-you', page);
-         setvideos(result);
+         setvideos((prev) => [...prev, ...result]);
       };
       fetchAPI();
+   }, []);
+
+   useEffect(() => {
+      window.addEventListener('scroll', handleScroll);
+      return () => window.removeEventListener('scroll', handleScroll);
    }, []);
 
    function handleScroll() {
@@ -41,12 +46,11 @@ function Home() {
          setMute(true);
       }
    };
-
    return (
       <div className={cx('HomeWrapper')}>
-         {videos.map((video) => (
+         {videos.map((video, index) => (
             <Video
-               key={video.id}
+               key={index}
                data={video}
                volume={volume}
                mute={mute}

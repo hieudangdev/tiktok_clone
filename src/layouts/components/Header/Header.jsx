@@ -25,6 +25,7 @@ import Images from '~/Components/Image/Image';
 import Search from '../Search/Search';
 import { Link } from 'react-router-dom';
 import routesConfig from '~/Routes/config/routes';
+import ModalForm from '~/Components/Modal/ModalForm';
 
 const cx = classNames.bind(styles);
 
@@ -143,6 +144,9 @@ function Header() {
                      </button>
                   )}
                </Menu>
+               <div className={cx('modal-mask')}>
+                  <ModalForm />
+               </div>
             </div>
          </div>
       </header>

@@ -27,6 +27,7 @@ const cx = classNames.bind(styles);
 function Video({ data, mute, volume, adjustVolume, toggleMuted }) {
    const [isPlaying, setIsPlaying] = useState(false);
    const [like, setlike] = useState(false);
+   const [following, setfollowing] = useState(false);
 
    const videoRef = useRef();
 
@@ -35,20 +36,6 @@ function Video({ data, mute, volume, adjustVolume, toggleMuted }) {
          videoRef.current.volume = 0;
       } else videoRef.current.volume = volume;
    });
-
-   // const playVideo = () => {
-   //    if (isPlaying === false) {
-   //       videoRef.current.play();
-   //
-   //    }
-   // };
-
-   // const pauseVideo = () => {
-   //    if (isPlaying === true) {
-   //       videoRef.current.pause();
-   //       setIsPlaying(false);
-   //    }
-   // };
 
    const togglePlayVideo = () => {
       if (isPlaying === false) {
@@ -60,12 +47,7 @@ function Video({ data, mute, volume, adjustVolume, toggleMuted }) {
       }
    };
 
-   const options = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.5,
-   };
-   const isVisibile = useElementOnScreen(options, videoRef);
+   const isVisibile = useElementOnScreen(videoRef);
 
    useEffect(() => {
       if (isVisibile) {
@@ -133,7 +115,9 @@ function Video({ data, mute, volume, adjustVolume, toggleMuted }) {
                      </div>
                   </div>
                   <div className={cx('btn-follow')}>
-                     <Button outline>Follow</Button>
+                     <Button small outline className={cx('btn-follow')} onClick={() => setfollowing(!following)}>
+                        {following ? 'Following' : 'Follow'}
+                     </Button>
                   </div>
                </div>
                <div className={cx('caption')}>
@@ -146,19 +130,19 @@ function Video({ data, mute, volume, adjustVolume, toggleMuted }) {
                   <button className={cx('btn-action')} onClick={() => setlike(!like)}>
                      {like ? <HeartSoidIcon /> : <HeartIcon />}
                   </button>
-                  <p className={cx('numbers')}>{data?.likes_count || Math.floor(Math.random() * 1000) + 1}</p>
+                  <p className={cx('numbers')}>{data?.likes_count}</p>
                </div>
                <div className={cx('btn-wrapper')}>
                   <button className={cx('btn-action')}>
                      <CommentIcon />
                   </button>
-                  <p className={cx('numbers')}>{data?.comments_count || Math.floor(Math.random() * 1000) + 1}</p>
+                  <p className={cx('numbers')}>{data?.comments_count}</p>
                </div>
                <div className={cx('btn-wrapper')}>
                   <button className={cx('btn-action')}>
                      <ShareSolidIcon />
                   </button>
-                  <p className={cx('numbers')}>{data?.shares_count || Math.floor(Math.random() * 1000) + 1}</p>
+                  <p className={cx('numbers')}>{data?.shares_count}</p>
                </div>
             </div>
          </div>

@@ -1,5 +1,7 @@
+const { default: Home } = require("../Home")
+
 function Following() {
-   return (<h1>Following</h1>)
+   return (<Home />)
 }
 
 export default Following

@@ -1,9 +1,14 @@
 import { useEffect, useState, useMemo } from "react"
-export const useElementOnScreen = (options, targetRef) => {
+
+const options = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.5,
+}
+export const useElementOnScreen = (targetRef, option) => {
     const [isVisibile, setIsVisible] = useState()
     const callbackFunction = (entries) => {
-        const [entry] = entries //const entry = entries[0]
-        console.log(entries)
+        const [entry] = entries //const entry = entries[0]  
         setIsVisible(entry.isIntersecting)
     }
     //useMemo tránh render lấy lại option mà chỉ render khi option tha đổi 

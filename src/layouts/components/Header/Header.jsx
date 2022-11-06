@@ -25,7 +25,8 @@ import Images from '~/Components/Image/Image';
 import Search from '../Search/Search';
 import { Link } from 'react-router-dom';
 import routesConfig from '~/Routes/config/routes';
-import ModalForm from '~/Components/Modal/ModalForm';
+import { ModalContext } from '~/Components/Modal';
+import { useContext } from 'react';
 
 const cx = classNames.bind(styles);
 
@@ -82,9 +83,11 @@ const Menu_USERS = [
 ];
 
 function Header() {
-   const currentUser = true;
+   const currentUser = false;
 
-   //handleMenu
+   const context = useContext(ModalContext);
+   console.log(context.islogin);
+   console.log(context);
    const handleMenu = (menuitem) => {
       console.log(menuitem);
    };
@@ -127,7 +130,9 @@ function Header() {
                         <Icon className={cx('icon-plus')} icon={faPlus} />
                         Upload
                      </Button>
-                     <Button primary>Log in</Button>
+                     <Button primary onClick={context.handleShowModal}>
+                        Log in
+                     </Button>
                   </>
                )}
 
@@ -144,9 +149,6 @@ function Header() {
                      </button>
                   )}
                </Menu>
-               <div className={cx('modal-mask')}>
-                  <ModalForm />
-               </div>
             </div>
          </div>
       </header>

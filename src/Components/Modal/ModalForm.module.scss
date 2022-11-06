@@ -102,7 +102,16 @@
       }
    }
 }
+.btn-modalList {
+   height: 44px;
+   margin-bottom: 16px;
+   border-radius: 10px;
+   border: 1px solid rgba(22, 24, 35, 0.12);
+   margin-left: 0px;
+   +.btn-modalList{
 
+   }
+}
 .close-btn {
    position: absolute;
    top: 15px;

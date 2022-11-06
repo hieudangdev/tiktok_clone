@@ -1,17 +1,32 @@
 import classNames from 'classnames/bind';
 import { useState, useMemo, useEffect } from 'react';
 
-import { ChevronDownIcon, QRIcon, UserIcon, XMarkIcon } from '~/components/Icons';
+import {
+   ChevronDownIcon,
+   IconApple,
+   IconFb,
+   IconGg,
+   IconInstagram,
+   IconkakaoTalk,
+   IconLine,
+   IconTwitter,
+   QRIcon,
+   UserIcon,
+   XMarkIcon,
+} from '~/components/Icons';
 import styles from './ModalForm.module.scss';
 import images from '~/assets/images';
 import Button from '~/components/Button';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { ModalContext } from './ModalProvider';
 
 const cx = classNames.bind(styles);
 
 function ModalForm({ onHide }) {
    const [formLoginState, setFormLoginState] = useState('login');
    const [filteredForm, setFilteredForm] = useState([]);
+   const context = useContext(ModalContext);
 
    const loginRegisterForm = useMemo(
       () => [
@@ -28,31 +43,31 @@ function ModalForm({ onHide }) {
                   title: 'Use phone / email / username',
                },
                {
-                  icon: <img src={images.facebook} alt='' />,
+                  icon: <IconFb />,
                   title: 'Continue with Facebook',
                },
                {
-                  icon: <img src={images.google} alt='' />,
+                  icon: <IconGg />,
                   title: 'Continue with Google',
                },
                {
-                  icon: <img src={images.twitter} alt='' />,
+                  icon: <IconTwitter />,
                   title: 'Continue with Twitter',
                },
                {
-                  icon: <img src={images.line} alt='' />,
+                  icon: <IconLine />,
                   title: 'Continue with LINE',
                },
                {
-                  icon: <img src={images.kakaotalk} alt='' />,
+                  icon: <IconkakaoTalk />,
                   title: 'Continue with KakaoTalk',
                },
                {
-                  icon: <img src={images.apple} alt='' />,
+                  icon: <IconApple />,
                   title: 'Continue with Apple',
                },
                {
-                  icon: <img src={images.instagram} alt='' />,
+                  icon: <IconInstagram />,
                   title: 'Continue with Instagram',
                },
             ],
@@ -67,11 +82,11 @@ function ModalForm({ onHide }) {
                   title: 'Use phone or email',
                },
                {
-                  icon: <img src={images.facebook} alt='' />,
+                  icon: <IconFb />,
                   title: 'Continue with Facebook',
                },
                {
-                  icon: <img src={images.google} alt='' />,
+                  icon: <IconGg />,
                   title: 'Continue with Google',
                },
             ],
@@ -85,23 +100,23 @@ function ModalForm({ onHide }) {
                   title: 'Use phone or email',
                },
                {
-                  icon: <img src={images.facebook} alt='' />,
+                  icon: <IconFb />,
                   title: 'Continue with Facebook',
                },
                {
-                  icon: <img src={images.google} alt='' />,
+                  icon: <IconGg />,
                   title: 'Continue with Google',
                },
                {
-                  icon: <img src={images.twitter} alt='' />,
+                  icon: <IconTwitter />,
                   title: 'Continue with Twitter',
                },
                {
-                  icon: <img src={images.line} alt='' />,
+                  icon: <IconLine />,
                   title: 'Continue with LINE',
                },
                {
-                  icon: <img src={images.kakaotalk} alt='' />,
+                  icon: <IconkakaoTalk />,
                   title: 'Continue with KakaoTalk',
                },
             ],
@@ -126,9 +141,11 @@ function ModalForm({ onHide }) {
                      {filteredForm.contents?.map((content, index) => {
                         return (
                            <Button
-                              style={{ height: '44px', marginBottom: '16px' }}
+                              className={cx('btn-modalList')}
                               key={index}
-                              onClick={content.onClick}
+                              onClick={() => {
+                                 return context.handlelogined();
+                              }}
                            >
                               <span className={cx('icon')}>{content.icon}</span> <span>{content.title}</span>
                            </Button>
@@ -167,8 +184,7 @@ function ModalForm({ onHide }) {
             </div>
 
             <div className={cx('close-btn')} onClick={onHide}>
-               {' '}
-               <XMarkIcon />{' '}
+               <XMarkIcon />
             </div>
          </div>
       </div>

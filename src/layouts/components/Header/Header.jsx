@@ -61,7 +61,7 @@ const MENU_ITEMS = [
    },
 ];
 
-const Menu_USERS = [
+const MENU_USERS = [
    {
       icon: <Icon icon={faUser} />,
       title: 'View profile',
@@ -83,15 +83,14 @@ const Menu_USERS = [
 ];
 
 function Header() {
-   const currentUser = false;
-
    const context = useContext(ModalContext);
-   console.log(context.islogin);
-   console.log(context);
-   const handleMenu = (menuitem) => {
-      console.log(menuitem);
-   };
+   const currentUser = context.islogin;
 
+   const handleMenu = (menuitem) => {
+      if (menuitem.title === 'Log out') {
+         context.handlelogined();
+      }
+   };
    return (
       <header className={cx('wrapper')}>
          <div className={cx('inner')}>
@@ -136,7 +135,7 @@ function Header() {
                   </>
                )}
 
-               <Menu items={currentUser ? Menu_USERS : MENU_ITEMS} onChange={handleMenu}>
+               <Menu items={MENU_ITEMS} User={MENU_USERS} onChange={handleMenu}>
                   {currentUser ? (
                      <Images
                         className={cx('user-avatar')}

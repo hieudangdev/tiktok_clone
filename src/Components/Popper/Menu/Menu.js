@@ -5,17 +5,22 @@ import Tippy from "@tippyjs/react/headless"
 import { Wrapper as PopperWrapper } from '~/Components/Popper'
 import MenuItem from "./MenuItem"
 import HeaderMenu from "./HeaderMenu"
-import { useState } from "react"
+import { useContext, useEffect, useState } from "react"
 
 import PropTypes from 'prop-types'
+import { ModalContext } from "~/Components/Modal"
 
 //validation
 const cx = classNames.bind(styles)
 
-function Menu({ children, items, onChange, hideOnClick = false }) {
+function Menu({ children, items, onChange, User, islogin, hideOnClick = false }) {
+    const context = useContext(ModalContext)
     const [History, setHistory] = useState([{ data: items }])
-    const current = History[History.length - 1]
 
+    useEffect(() => {
+        context.islogin ? setHistory([{ data: User }]) : setHistory([{ data: items }])
+    }, [context.islogin, User, items])
+    const current = History[History.length - 1]
 
     const renderItems = () => {
         return current.data.map((item, index) => {

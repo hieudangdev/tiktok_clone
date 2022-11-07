@@ -1,7 +1,9 @@
+
 .wrapper {
    display: flex;
    max-width: 100%;
    position: relative;
+
    padding: 20px 0;
    max-height: 100%;
    margin-bottom: 10px;
@@ -181,6 +183,14 @@
    button {
       margin-top: 8px;
       margin-bottom: 6px;
+   }
+}
+.btn-follow {
+   // color: var(--primarycolor);
+   &.active {
+      border-color: rgb(208, 209, 211);
+      color: rgb(22, 24, 35);
+      background-color: rgb(248, 248, 248);
    }
 }
 .btn-wrapper {

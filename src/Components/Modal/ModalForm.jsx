@@ -15,7 +15,6 @@ import {
    XMarkIcon,
 } from '~/components/Icons';
 import styles from './ModalForm.module.scss';
-import images from '~/assets/images';
 import Button from '~/components/Button';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
@@ -144,7 +143,8 @@ function ModalForm({ onHide }) {
                               className={cx('btn-modalList')}
                               key={index}
                               onClick={() => {
-                                 return context.handlelogined();
+                                 context.handlelogined();
+                                 return context.handleHideModal();
                               }}
                            >
                               <span className={cx('icon')}>{content.icon}</span> <span>{content.title}</span>

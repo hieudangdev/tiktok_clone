@@ -1,9 +1,12 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useState } from 'react';
 import * as HomeServices from '~/Services/Video';
 import classNames from 'classnames/bind';
 import styles from './Home.module.scss';
 import Video from '~/Components/Video/';
+import createScrollSnap from 'scroll-snap';
+import useScrollSnap from 'react-use-scroll-snap';
+import { createRef } from 'react';
 
 const cx = classNames.bind(styles);
 
@@ -46,8 +49,11 @@ function Home() {
          setMute(true);
       }
    };
+   const container = useRef(null);
+   useScrollSnap({ ref: container });
+
    return (
-      <div className={cx('HomeWrapper')}>
+      <section className={cx('HomeWrapper')} ref={container}>
          {videos.map((video, index) => (
             <Video
                key={index}
@@ -58,7 +64,7 @@ function Home() {
                toggleMuted={toggleMuted}
             />
          ))}
-      </div>
+      </section>
    );
 }
 

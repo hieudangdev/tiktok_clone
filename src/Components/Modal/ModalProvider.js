@@ -15,16 +15,16 @@ function ModalProvider({ children }) {
     }
 
     const handlelogined = () => {
-        setislogin(true)
+        setislogin(!islogin)
 
     }
 
     const value = {
         active,
+        islogin,
         handleShowModal,
         handleHideModal,
-        islogin,
-        handlelogined
+        handlelogined,
     }
     return (
         <ModalContext.Provider value={value}>

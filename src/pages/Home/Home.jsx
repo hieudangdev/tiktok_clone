@@ -4,9 +4,7 @@ import * as HomeServices from '~/Services/Video';
 import classNames from 'classnames/bind';
 import styles from './Home.module.scss';
 import Video from '~/Components/Video/';
-import createScrollSnap from 'scroll-snap';
 import useScrollSnap from 'react-use-scroll-snap';
-import { createRef } from 'react';
 
 const cx = classNames.bind(styles);
 

@@ -13,7 +13,7 @@ import {
    QRIcon,
    UserIcon,
    XMarkIcon,
-} from '~/components/Icons';
+} from '~/Components/Icons';
 import styles from './ModalForm.module.scss';
 import Button from '~/components/Button';
 import { Link } from 'react-router-dom';

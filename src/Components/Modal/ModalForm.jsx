@@ -15,7 +15,7 @@ import {
    XMarkIcon,
 } from '~/Components/Icons';
 import styles from './ModalForm.module.scss';
-import Button from '~/components/Button';
+import Button from '~/Components/Button';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { ModalContext } from './ModalProvider';
